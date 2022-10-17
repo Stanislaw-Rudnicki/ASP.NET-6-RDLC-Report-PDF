@@ -1,0 +1,68 @@
+﻿@using WebApplication8_PDF.Models
+@model User
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="questionnaire">
+    <form asp-controller="Report">
+        <div class="header">
+            <h2>Заповніть анкету</h2>
+            <span>* - Поля, обов’язкові для заповнення</span>
+        </div>
+        <ul>
+            <li>
+                <label asp-for="FullName">Ім’я та прізвище:</label>
+                <input type="text" asp-for="FullName" placeholder="Констянтин Костянтинопольський" required
+                       pattern="[А-ЯІЇЄҐЁ][а-яёієїґ]+\s[А-ЯІЇЄҐЁ][а-яёієїґ]+(-?[А-ЯІЇЄҐЁ][а-яёієїґ-]+)*|[A-Z][a-z]+\s[A-Z][a-z]+(-?[A-Z][a-z-]+)*">
+                <span class="prompt">Приклад вводу: Іван Петренко</span>
+            </li>
+            <li>
+                <label asp-for="Login">Логін для сайта (англійською):</label>
+                <input type="text" asp-for="Login" placeholder="Ivan_P" required pattern="[a-zA-Z_]+">
+                <span class="prompt">Тільки латинські літери та &nbsp;_</span>
+            </li>
+            <li>
+                <label for="Male">Стать:</label>
+                <input type="radio" name="Gender" id="Male" value="1" class="radio">
+                <label for="Male">Ч</label>
+                <input type="radio" name="Gender" id="Female" value="0" class="radio">
+                <label for="Female">Ж</label>
+            </li>
+            <li>
+                <label asp-for="Date">Дата народження:</label>
+                <input type="date" asp-for="Date">
+            </li>
+            <li>
+                <label asp-for="Email">Email:</label>
+                <input type="email" asp-for="Email" placeholder="Ваша електронна пошта" required
+                    pattern="[a-zA-Z0-9_.-]+@@([a-zA-Z0-9-]+\.)+[a-zA-Z0-9]{2,6}">
+                <span class="prompt">Неправильна email адреса</span>
+            </li>
+            <li>
+                <label asp-for="Site">Website (url):</label>
+                <input type="text" asp-for="Site" placeholder="https://www.my-site.com" required>
+                <span class="prompt">Обов’язкове поле</span>
+            </li>
+            <li>
+                <label asp-for="Card">Номер карти:</label>
+                <input type="text" asp-for="Card" required pattern="(\d{4}[-\s]?){3}\d{4}">
+                <span class="prompt">Неправильний номер карти</span>
+            </li>
+            <li>
+                <label asp-for="Phone">Телефон:</label>
+                <input type="tel" asp-for="Phone" placeholder="+38 (099) 999-99-99" required
+                    pattern="\+38\s\(0\d{2}\)\s\d{3}([-\s]?\d{2}){2}">
+                <span class="prompt">Приклад вводу: +38 (099) 999-99-99</span>
+            </li>
+            <li>
+                <label asp-for="Message">Повідомлення:</label>
+                <textarea rows="5" cols="54" asp-for="Message"></textarea>
+            </li>
+            <li>
+                <input type="submit" name="submit" value="Зберегти як PDF">
+            </li>
+        </ul>
+    </form>
+</div>
